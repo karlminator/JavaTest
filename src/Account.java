@@ -1,6 +1,6 @@
 public abstract class Account {
     private double balance;
-    private long accountNo;
+    private final long accountNo;
     private static long salaryCounter = 1000;
     private static long savingsCounter = 2000;
 
@@ -18,7 +18,16 @@ public abstract class Account {
         return savingsCounter++;
     }
 
-    // Getters
+    public boolean transfer(Account toAccount, double amount) {
+        if (amount <= 0 || amount > balance) {
+            return false;
+        }
+
+        balance -= amount;
+        toAccount.balance += amount;
+        return true;
+    }
+
     public double getBalance() {
         return balance;
     }
@@ -27,7 +36,6 @@ public abstract class Account {
         return accountNo;
     }
 
-    // Setter för balance - med validering
     protected void setBalance(double newBalance) {
         if (newBalance >= 0) {
             this.balance = newBalance;
