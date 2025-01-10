@@ -168,12 +168,25 @@ public class Bank {
     private boolean isValSSN(String ssn) {
         ssn = ssn.replace("-", "");
         if (ssn.length() != 10) return false;
+
         try {
             Long.parseLong(ssn);
-        } catch (NumberFormatException e) {
+
+            int year = Integer.parseInt(ssn.substring(0, 2));
+            int month = Integer.parseInt(ssn.substring(2, 4));
+            int day = Integer.parseInt(ssn.substring(4, 6));
+
+            if (month < 1 || month > 12) return false;
+
+            int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+            // Skottår om delbart med 4
+            if (year % 4 == 0) daysInMonth[1] = 29;
+
+            return day >= 1 && day <= daysInMonth[month - 1];
+
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             return false;
         }
-        return true;
     }
 
     private boolean isValidPin(String pin) {
