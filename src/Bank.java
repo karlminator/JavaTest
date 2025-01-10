@@ -5,12 +5,14 @@ public class Bank {
     private Scanner sc = new Scanner(System.in);
     private ArrayList<User> users = new ArrayList<>();
 
-    User user1 = new User("111111-1111", 1234);
-    User user2 = new User("112233-1234", 1234);
+    User user1 = new User("880717-1111", 1234);
+    User user2 = new User("111111-1234", 1234);
+    User user3 = new User("991111-1234", 1234);
 
     public Bank() {
-    users.add(user1);
-    users.add(user2);
+        users.add(user1);
+        users.add(user2);
+        users.add(user3);
     }
 
     public void run() {
@@ -71,6 +73,10 @@ public class Bank {
 
         // TODO: Cannot accept anything other than 1 in else
         int fromChoice = sc.nextInt();
+        if (fromChoice != 1 && fromChoice != 2) {
+            System.out.println("Ogiltigt val. Överföring avbruten.");
+            return;
+        }
         Account fromAccount = (fromChoice == 1) ? user.getSalaryAccount() : user.getSavingsAccount();
 
         System.out.println("Ange mottagarkonto (kontonummer): ");
