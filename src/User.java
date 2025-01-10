@@ -20,6 +20,14 @@ public class User {
     public String getSocialSecurityNum() {
         return socialSecurityNum;
     }
+
+    public SalaryAccount getSalaryAccount() {
+        return salaryAccount;
+    }
+
+    public SavingsAccount getSavingsAccount() {
+        return savingsAccount;
+    }
 }
 
 
