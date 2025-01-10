@@ -69,6 +69,7 @@ public class Bank {
         System.out.println("1. Lönekonto: " + user.getSalaryAccount().getAccountNo());
         System.out.println("2. Sparkonto: " + user.getSavingsAccount().getAccountNo());
 
+        // TODO: Cannot accept anything other than 1 in else
         int fromChoice = sc.nextInt();
         Account fromAccount = (fromChoice == 1) ? user.getSalaryAccount() : user.getSavingsAccount();
 
